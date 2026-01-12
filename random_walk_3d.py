@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+
+def random_walk_3d(n_steps=5000):
+    steps = np.random.choice([-1, 1], size=(n_steps, 3))
+    path = np.cumsum(steps, axis=0)
+    return path
+
+
+def plot_walk(path):
+    fig = plt.figure(figsize=(10, 7))
+    ax = fig.add_subplot(111, projection='3d')
+
+    ax.plot(path[:, 0], path[:, 1], path[:, 2], lw=1)
+
+    ax.set_title("3D Monte Carlo Random Walk")
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+
+    plt.tight_layout()
+    plt.show()
+
+
+if __name__ == "__main__":
+    path = random_walk_3d(10000)
+    plot_walk(path)
+
